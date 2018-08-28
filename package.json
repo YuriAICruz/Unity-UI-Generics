@@ -1,0 +1,8 @@
+{
+    "name": "graphene.ui",
+    "displayName": "UI Generics",
+    "version": "1.0.0",
+    "unity": "2018.2",
+    "description": ". . .",
+    "dependencies": { }
+}
