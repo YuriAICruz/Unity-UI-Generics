@@ -1,4 +1,4 @@
-﻿namespace UiGenerics.NetworkUi
+﻿namespace Graphene.UiGenerics.NetworkUi
 {
     public enum NetworkInteractionType
     {

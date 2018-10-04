@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace UiGenerics
+namespace Graphene.UiGenerics
 {
     [RequireComponent(typeof(InputField))]
     public class InputFieldView : MonoBehaviour, ISelectHandler

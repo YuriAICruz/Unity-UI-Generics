@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-namespace UiGenerics.NetworkUi
+namespace Graphene.UiGenerics.NetworkUi
 {
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(NetworkIdentity))]

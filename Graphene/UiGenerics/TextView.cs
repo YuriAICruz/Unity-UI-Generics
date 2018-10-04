@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UiGenerics
+namespace Graphene.UiGenerics
 {
     [RequireComponent(typeof(Text))]
     public class TextView : MonoBehaviour

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace UiGenerics
+namespace Graphene.UiGenerics
 {
     [RequireComponent(typeof(Image))]
     public class ImageView : MonoBehaviour
