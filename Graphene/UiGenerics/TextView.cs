@@ -13,7 +13,7 @@ namespace Graphene.UiGenerics
         {
             Text = GetComponent<Text>();
             
-            SendMessage("Setup");
+            SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

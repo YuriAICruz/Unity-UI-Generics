@@ -11,7 +11,7 @@ namespace Graphene.UiGenerics
         {
             Button = GetComponent<Button>();
             Button.onClick.AddListener(OnClick);
-            SendMessage("Setup");
+            SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
 
         protected virtual void OnClick()

@@ -11,7 +11,7 @@ namespace Graphene.UiGenerics
         void Awake()
         {
             Image = GetComponent<Image>();
-            SendMessage("Setup");
+            SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Graphene.UiGenerics
@@ -7,10 +8,11 @@ namespace Graphene.UiGenerics
     public class CanvasGroupView : MonoBehaviour
     {
         protected CanvasGroup CanvasGroup;
+
         void Awake()
         {
             CanvasGroup = GetComponent<CanvasGroup>();
-            SendMessage("Setup");
+            SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
 
         public void Show()

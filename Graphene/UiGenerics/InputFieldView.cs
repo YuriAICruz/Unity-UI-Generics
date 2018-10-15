@@ -15,7 +15,7 @@ namespace Graphene.UiGenerics
             InputField = GetComponent<InputField>();
             InputField.onEndEdit.AddListener(EndEdit);
             InputField.onValueChanged.AddListener(ValueChanged);
-            SendMessage("Setup");
+            SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
 
         protected virtual void EndEdit(string text)
