@@ -11,30 +11,40 @@ namespace Graphene.UiGenerics
 
         void Awake()
         {
-            CanvasGroup = GetComponent<CanvasGroup>();
+            CheckCanvasGroup();
             SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
 
-        public void Show()
+        protected void CheckCanvasGroup()
         {
+            if(CanvasGroup == null)
+                CanvasGroup = GetComponent<CanvasGroup>();
+        }
+
+        public virtual void Show()
+        {
+            CheckCanvasGroup();
             CanvasGroup.alpha = 1;
             Unblock();
         }
 
-        public void Hide()
+        public virtual void Hide()
         {
+            CheckCanvasGroup();
             CanvasGroup.alpha = 0;
             Block();
         }
 
         public void Block()
         {
+            CheckCanvasGroup();
             CanvasGroup.blocksRaycasts = false;
             CanvasGroup.interactable = false;
         }
 
         public void Unblock()
         {
+            CheckCanvasGroup();
             CanvasGroup.blocksRaycasts = true;
             CanvasGroup.interactable = true;
         }
