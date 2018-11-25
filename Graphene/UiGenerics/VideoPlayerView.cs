@@ -21,6 +21,7 @@ namespace Graphene.UiGenerics
         private VideoLoadingText _infoText;
 
         public VideoUrlSourceManage _player;
+        private string _clipName;
 
         private void Awake()
         {
@@ -39,6 +40,8 @@ namespace Graphene.UiGenerics
         {
             _infoText.SetText("Não foi possível exibir o vídeo");
             StartCoroutine(CleanInfoText());
+            
+            Play(_clipName);
         }
 
         private void PrepareCompleted(VideoPlayer source)
@@ -68,6 +71,7 @@ namespace Graphene.UiGenerics
                 Stop();
             }
 
+            _clipName = clipName;
             _player.SetUrl(Url + _player.GetResUrlPath(), clipName);
             StartCoroutine(PrepareVideo());
 

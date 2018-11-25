@@ -22,6 +22,8 @@ namespace Graphene.UiGenerics
             "SD/"
         };
 
+        private string _url;
+
         public void Setup(VideoPlayer player)
         {
             _player = player;
@@ -62,16 +64,14 @@ namespace Graphene.UiGenerics
 
         private void OnError(VideoPlayer source, string message)
         {
-            errorReceived?.Invoke(source, message);
-            
             Debug.LogError(message);
 
             if (_currentResolution == _selectedResolution)
             {
                 _currentResolution = _selectedResolution - 1;
-
-                Play();
             }
+            
+            errorReceived?.Invoke(source, message);
         }
         
         public void Play()
@@ -102,7 +102,8 @@ namespace Graphene.UiGenerics
 
         public void SetUrl(string url, string clipName)
         {
-            _player.url = url + clipName;
+            _url = url;
+            _player.url = _url + clipName;
         }
 
         public bool IsPrepared()
