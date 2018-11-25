@@ -15,5 +15,11 @@ namespace Graphene.UiGenerics
             
             SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
+
+
+        public void SetText(string text)
+        {
+            Text.text = text;
+        }
     }
 }
