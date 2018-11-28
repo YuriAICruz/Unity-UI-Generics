@@ -23,6 +23,7 @@ namespace Graphene.UiGenerics
         };
 
         private string _url;
+        private VideoClip _clip;
 
         public void Setup(VideoPlayer player)
         {
@@ -104,6 +105,12 @@ namespace Graphene.UiGenerics
         {
             _url = url;
             _player.url = _url + clipName;
+        }
+
+        public void SetClip(VideoClip clip)
+        {
+            _clip = clip;
+            _player.clip = clip;
         }
 
         public bool IsPrepared()
