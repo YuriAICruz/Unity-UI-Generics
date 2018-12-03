@@ -7,10 +7,11 @@ namespace Graphene.UiGenerics.Drag
     public class ButtonDragView : Draggable
     {
         protected Button Button;
-        void Setup()
+        void SetupInner()
         {
             Button = GetComponent<Button>();
             Button.onClick.AddListener(OnClick);
+            SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
 
         protected virtual void OnClick()

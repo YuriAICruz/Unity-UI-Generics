@@ -14,7 +14,7 @@ namespace Graphene.UiGenerics.Drag
         private void Awake()
         {
             _iniPos = transform.position;
-            SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
+            SendMessage("SetupInner", SendMessageOptions.DontRequireReceiver);
         }
 
         public virtual void OnBeginDrag(PointerEventData eventData)
