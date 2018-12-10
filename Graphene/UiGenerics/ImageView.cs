@@ -6,6 +6,7 @@ namespace Graphene.UiGenerics
     [RequireComponent(typeof(Image))]
     public class ImageView : MonoBehaviour
     {
+        [HideInInspector]
         public Image Image;
         
         void Awake()
