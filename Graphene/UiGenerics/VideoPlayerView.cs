@@ -12,6 +12,9 @@ namespace Graphene.UiGenerics
     [RequireComponent(typeof(VideoPlayer))]
     public class VideoPlayerView : MonoBehaviour
     {
+        public static bool fromURL = true;
+        public bool useURL = true;
+    
         public string Url = "https://s3-sa-east-1.amazonaws.com/sgy1lz.cre9l6g2m5ngs1zwg3.ntls-2fbs9r6.kexurgnuv4g3zj-ez.nt9/videos/";
         
         public event Action OnPlay, OnStop, OnEnd;
@@ -22,6 +25,7 @@ namespace Graphene.UiGenerics
 
         public VideoUrlSourceManage _player;
         private string _clipName;
+        private VideoClip _clip;
 
         private void Awake()
         {
@@ -33,6 +37,9 @@ namespace Graphene.UiGenerics
             
             _player.Setup(GetComponent<VideoPlayer>());
 
+            fromURL = useURL;
+            Debug.Log("Getting videos from URL: " + fromURL);
+
             SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
         }
 
@@ -41,7 +48,14 @@ namespace Graphene.UiGenerics
             _infoText.SetText("Não foi possível exibir o vídeo");
             StartCoroutine(CleanInfoText());
             
-            Play(_clipName);
+            if (fromURL)
+            {
+                Play(_clipName);
+            }
+            else
+            {
+                Play(_clip);
+            }
         }
 
         private void PrepareCompleted(VideoPlayer source)
@@ -64,8 +78,30 @@ namespace Graphene.UiGenerics
             _player.Play();
         }
 
+        public void Play(VideoClip clip)
+        {
+            if (fromURL)
+            {
+                Debug.Log("Playing from embedded VideoClip is disabled, check bool useURL in VideoPlayerView");
+                return;
+            }
+
+            if (_player.IsPlaying())
+            {
+                Stop();
+            }
+             _player.SetClip(clip);
+             Play();
+        }
+
         public void Play(string clipName)
         {
+            if (!fromURL)
+            {
+                Debug.Log("Playing from URL is disabled");
+                return;
+            }
+
             if (_player.IsPlaying())
             {
                 Stop();
@@ -89,7 +125,10 @@ namespace Graphene.UiGenerics
         protected IEnumerator PrepareVideo()
         {
             _player.Prepare();
-            _infoText.SetText("Baixando o vídeo...");
+            if (fromURL)
+            {
+                _infoText.SetText("Baixando o vídeo...");
+            }
 
             while (!_player.IsPrepared())
             {
