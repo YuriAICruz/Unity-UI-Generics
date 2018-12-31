@@ -35,6 +35,12 @@ namespace Graphene.UiGenerics
             Block();
         }
 
+        public bool IsHidden()
+        {
+            CheckCanvasGroup();
+            return (CanvasGroup.interactable == false);
+        }
+
         public void Block()
         {
             CheckCanvasGroup();
