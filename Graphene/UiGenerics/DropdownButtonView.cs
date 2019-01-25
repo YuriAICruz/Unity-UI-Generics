@@ -37,6 +37,14 @@ namespace Graphene.UiGenerics
             _anim = StartCoroutine(Animate(LayoutElement.minHeight, _maxHeight, Duration));
         }
 
+        private void Update()
+        {
+			if (Input.GetKeyDown(KeyCode.Escape))
+			{
+                Hide();
+			}
+        }
+
         public void Hide()
         {
             if (_anim != null)
