@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,8 @@ namespace Graphene.UiGenerics
         
         private Coroutine _anim;
         
+        public event Action OnShow, OnHide;
+        
         private bool _show;
         private float _maxHeight;
         private float _startHeight;
@@ -29,12 +32,13 @@ namespace Graphene.UiGenerics
 
         public void Show()
         {
+            _show = true;
             if (_anim != null)
             {
                 return;
             }
             
-            _anim = StartCoroutine(Animate(LayoutElement.minHeight, _maxHeight, Duration));
+            _anim = StartCoroutine(Animate(LayoutElement.minHeight, _maxHeight, Duration, OnShow));
         }
 
         private void Update()
@@ -47,17 +51,20 @@ namespace Graphene.UiGenerics
 
         public void Hide()
         {
+            _show = false;
             if (_anim != null)
             {
                 return;
             }
             
-            _anim = StartCoroutine(Animate(LayoutElement.minHeight, _startHeight, Duration));
+            _anim = StartCoroutine(Animate(LayoutElement.minHeight, _startHeight, Duration, OnHide));
         }
 
-        IEnumerator Animate(float from, float to, float duration)
+        IEnumerator Animate(float from, float to, float duration, Action action)
         {
             var t = 0f;
+            
+            action?.Invoke();
 
             LayoutElement.minHeight = Mathf.Lerp(from, to, 0);
             while (t < duration)
