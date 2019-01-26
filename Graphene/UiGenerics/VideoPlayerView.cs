@@ -45,7 +45,6 @@ namespace Graphene.UiGenerics
             SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
 
             isPT = PlayerPrefs.GetString("language", "PT") == "PT";
-            Debug.Log("isPT: " + isPT);
         }
 
         private void OnError(VideoPlayer arg1, string arg2)
