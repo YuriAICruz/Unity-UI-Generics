@@ -37,7 +37,7 @@ namespace Graphene.UiGenerics
             {
                 return;
             }
-            
+
             _anim = StartCoroutine(Animate(LayoutElement.minHeight, _maxHeight, Duration, OnShow));
         }
 

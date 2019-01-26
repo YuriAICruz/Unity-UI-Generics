@@ -27,6 +27,8 @@ namespace Graphene.UiGenerics
         private string _clipName;
         private VideoClip _clip;
 
+        private bool isPT;
+
         private void Awake()
         {
             _infoText = FindObjectOfType<VideoLoadingText>();
@@ -41,11 +43,17 @@ namespace Graphene.UiGenerics
             Debug.Log("Getting videos from URL: " + fromURL);
 
             SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
+
+            isPT = PlayerPrefs.GetString("language", "PT") == "PT";
+            Debug.Log("isPT: " + isPT);
         }
 
         private void OnError(VideoPlayer arg1, string arg2)
         {
-            _infoText.SetText("Não foi possível exibir o vídeo");
+            string msg = isPT ? "Não foi possível exibir o vídeo" : "No es posible ver el video";
+
+            _infoText.SetText(msg);
+
             StartCoroutine(CleanInfoText());
             
             if (fromURL)
@@ -125,9 +133,11 @@ namespace Graphene.UiGenerics
         protected IEnumerator PrepareVideo()
         {
             _player.Prepare();
+
             if (fromURL)
             {
-                _infoText.SetText("Baixando o vídeo...");
+                string msg = isPT ? "Baixando o vídeo..." : "Descargando el vídeo...";
+               _infoText.SetText(msg);
             }
 
             while (!_player.IsPrepared())
