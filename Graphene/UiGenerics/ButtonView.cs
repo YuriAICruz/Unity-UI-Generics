@@ -16,6 +16,7 @@ namespace Graphene.UiGenerics
 
         protected virtual void OnClick()
         {
+            Disable();
             Invoke("Enable", 0.8f);
         }
 
