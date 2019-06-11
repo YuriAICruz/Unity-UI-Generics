@@ -10,12 +10,12 @@ namespace Graphene.UiGenerics.CanvasGroupExtensions
         public float Duration;
         private bool _disabled;
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             _disabled = false;
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             _disabled = true;
             KillCoroutine();

@@ -9,7 +9,7 @@ namespace Graphene.UiGenerics
     {
         protected CanvasGroup CanvasGroup;
 
-        void Awake()
+        protected virtual void Awake()
         {
             CheckCanvasGroup();
             SendMessage("Setup", SendMessageOptions.DontRequireReceiver);
