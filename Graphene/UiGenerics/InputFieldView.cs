@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ namespace Graphene.UiGenerics
     [RequireComponent(typeof(InputField))]
     public class InputFieldView : MonoBehaviour, ISelectHandler
     {
+        public event Action<string> OnValueChanged;
+        
         [HideInInspector]
         public InputField InputField;
         
@@ -24,6 +27,7 @@ namespace Graphene.UiGenerics
 
         protected virtual void ValueChanged(string text)
         {
+            OnValueChanged?.Invoke(text);
         }
 
         public virtual void OnSelect(BaseEventData eventData)
