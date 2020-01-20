@@ -23,12 +23,22 @@ namespace Graphene.UiGenerics
 
         public virtual void Show()
         {
+            ShowForce();
+        }
+
+        public virtual void Hide()
+        {
+            HideForce();
+        }
+        
+        public void ShowForce()
+        {
             CheckCanvasGroup();
             CanvasGroup.alpha = 1;
             Unblock();
         }
 
-        public virtual void Hide()
+        public virtual void HideForce()
         {
             CheckCanvasGroup();
             CanvasGroup.alpha = 0;
